@@ -1,10 +1,8 @@
-//Program to reverse the array
-import java.util.*;
-class ReverseArr{
+//Program to search element in array
+
+class SearchEle{
 	
 	public static void main(String args[]){
-    
-    int temp=0;
 
 	java.util.Scanner scan = new java.util.Scanner(System.in);
 	
@@ -17,24 +15,25 @@ class ReverseArr{
     arr[i] = scan.nextInt();
     }
 
-    int j=1,k=arr.length-1;
+    System.out.println("Enter the element to search in array");
+    int searchElement = scan.nextInt();
+
     for(int i=0;i<arr.length;i++){
-
-      
-    	if(i<j){
-    		temp=arr[i];
-          arr[i] = arr[k];
-          arr[k] = temp;
-    	}
-    	k--;
+       if(arr[i] == searchElement){
+       	System.out.println("Element Found");
+       	break;
+       }
     }
-    System.out.println("Array Elements are"+Arrays.toString(arr));
-    
+	System.out.println("Element not Found");
 
 
 
 
 
-   
+
+
+
+
+
 	}
-}
+	}

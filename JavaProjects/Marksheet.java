@@ -24,7 +24,6 @@ class Calculation
 	int total =0;
 	float per = 0.0f;
 	
-	
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
 	Date date = new Date();   
 
@@ -67,13 +66,7 @@ class Calculation
 			}
 			
 		}
-		
-		
-		
-		
-		
-		
-		
+			
 	}
 	
 	void calculate() {

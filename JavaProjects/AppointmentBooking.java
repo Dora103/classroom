@@ -6,26 +6,27 @@ public class AppointmentBooking {
 	Scanner sc = new Scanner(System.in);
 
 	//doctor id and password
-	String dc_userName[] = new String[3];
-	String dc_password[] = new String[3];
-	int dc_id[] = new int[3];
-	String dc_name[] = new String[3];
-	long dc_mobile_no[] = new long[3];
-	String dc_city[] = new String[3];
-	int openTime[] = new int[3];
-	int closeTime[] = new int[3];
+	ArrayList<String> dc_userName = new ArrayList<String>();
+	ArrayList<String> dc_password = new ArrayList<String>();
+	ArrayList<Integer> dc_id = new ArrayList<Integer>();
+	ArrayList<String> dc_name = new ArrayList<String>();
+	ArrayList<Long> dc_mobile_no = new ArrayList<Long>();
+	ArrayList<String> dc_city = new ArrayList<String>();
+	ArrayList<Integer> openTime = new ArrayList<Integer>();
+	ArrayList<Integer> closeTime = new ArrayList<Integer>();
 	int index_dr=0;
 
 	//patient data
-	int pateint_id[] = new int[3];
-	String pt_name[] = new String[3];
-	int age[] = new int[3];
-	long mobile_no[] = new long[3];
-	String gender[] = new String[3];
-	String userName[] = new String[3];
-	String password[] = new String[3];
-	String appoint_pt[] = new String[3];
-	String appoint_dr[] = new String[3];
+	ArrayList<Integer> pateint_id = new ArrayList<Integer>();
+	ArrayList<String> pt_name = new ArrayList<String>();
+	ArrayList<Integer> age = new ArrayList<Integer>();
+	ArrayList<Long> mobile_no = new ArrayList<Long>();
+	ArrayList<String> gender = new ArrayList<String>();
+	ArrayList<String> userName = new ArrayList<String>();
+	ArrayList<String> password = new ArrayList<String>();
+	ArrayList<String> appoint_pt = new ArrayList<String>();
+	ArrayList<String> appoint_dr = new ArrayList<String>();
+
 	int index_pt=0;
 	int apt_index=0;
 
@@ -109,39 +110,44 @@ public class AppointmentBooking {
 			clearMethod();
 			mainFunct();
 			break;
-			default: System.out.println("Please enter correct choice");
-			doctorFunction();
+		default: System.out.println("Please enter correct choice");
+		doctorFunction();
 		}
 	}
 
 	//doctor register
 	public void doctorRegister() throws Exception{
-		
-			System.out.println("Your ID is : ");
-			dc_id[index_dr]=sc.nextInt();
-			System.out.println("Enter your name : ");
-			sc.nextLine();
-			dc_name[index_dr] = sc.nextLine();
-			System.out.println("Enter your mobile no. : ");
-			dc_mobile_no[index_dr]=sc.nextLong();
-			sc.nextLine();
-			System.out.println("Enter your City : ");
-			dc_city[index_dr] = sc.nextLine();
-			System.out.println("Enter your Opening Time : ");
-			openTime[index_dr] = sc.nextInt();
-			System.out.println("Enter your Closing Time : ");
-			closeTime[index_dr] = sc.nextInt();
-			sc.nextLine();
-			System.out.println("Enter your Username : ");
-			dc_userName[index_dr] = sc.nextLine();
-			System.out.println("Enter your password : ");
-			dc_password[index_dr] = sc.nextLine();
-			System.out.println("Registration is Successful!!!!");
-			index_dr++;
-		}
+
+		System.out.println("Your ID is : ");
+		dc_id.add(index_dr, sc.nextInt());
+		System.out.println("Enter your name : ");
+		sc.nextLine();
+		dc_name.add(index_dr, sc.nextLine());
+		System.out.println("Enter your mobile no. : ");
+		dc_mobile_no.add(index_dr, sc.nextLong());
+		sc.nextLine();
+		System.out.println("Enter your City : ");
+		dc_city.add(index_dr, sc.nextLine());
+		System.out.println("Enter your Opening Time : ");
+		//openTime[index_dr] = sc.nextInt();
+		openTime.add(index_dr, sc.nextInt());
+		System.out.println("Enter your Closing Time : ");
+		//closeTime[index_dr] = sc.nextInt();
+		closeTime.add(index_dr, sc.nextInt());
+		sc.nextLine();
+		System.out.println("Enter your Username : ");
+		//dc_userName[index_dr] = sc.nextLine();
+		dc_userName.add(index_dr, sc.nextLine());
+		System.out.println("Enter your password : ");
+		//dc_password[index_dr] = sc.nextLine();
+		dc_password.add(index_dr, sc.nextLine());
+		System.out.println("Registration is Successful!!!!");
+		index_dr++;
+	}
 
 	//doctor login
-	public String doctorLogin(String[] username, String[] password) throws Exception {
+	//public String doctorLogin(String[] username, String[] password) throws Exception {
+	public String doctorLogin(ArrayList<String> username, ArrayList<String> password) throws Exception {
 		sc.nextLine();
 		System.out.println("                         --------------------- Doctor Page ---------------------                           ");
 		sc.nextLine();
@@ -155,9 +161,10 @@ public class AppointmentBooking {
 		password1 = sc.nextLine();
 
 		//username validation
-		for(int i=0; i<username.length; i++)
+		for(int i=0; i<username.size(); i++)
 		{
-			if(username1.equals(username[i]))
+			//if(username1.equals(username[i]))
+			if(username1.equals(username.get(i)))
 			{
 				userFlag = true;
 				break;
@@ -165,9 +172,9 @@ public class AppointmentBooking {
 		}
 
 		//password validation
-		for(int i=0; i<password.length; i++)
+		for(int i=0; i<password.size(); i++)
 		{
-			if(password1.equals(password[i]))
+			if(password1.equals(password.get(i)))
 			{
 				passFlag = true;
 				break;
@@ -194,21 +201,21 @@ public class AppointmentBooking {
 		int index=0;
 
 		//get index based on user id
-		for(int i=0;i<dc_name.length;i++)
+		for(int i=0;i<dc_name.size();i++)
 		{
-			if(dc_name[i] == name )
+			if(dc_name.get(i) == name )
 			{
 				index=i;
 				break;
 			}
 		}
 
-		System.out.println("ID : "+dc_id[index]);
-		System.out.println("Name : "+dc_name[index]);
-		System.out.println("Mobile. no. : "+dc_mobile_no[index]);
-		System.out.println("City : "+dc_city[index]);
-		System.out.println("Open Time : "+openTime[index]);
-		System.out.println("Close Time : "+closeTime[index]);
+		System.out.println("ID : "+dc_id.get(index));
+		System.out.println("Name : "+dc_name.get(index));
+		System.out.println("Mobile. no. : "+dc_mobile_no.get(index));
+		System.out.println("City : "+dc_city.get(index));
+		System.out.println("Open Time : "+openTime.get(index));
+		System.out.println("Close Time : "+closeTime.get(index));
 
 		System.out.println();
 		System.out.println("                             --------------------- Doctor Page ----------------------                              ");
@@ -233,24 +240,27 @@ public class AppointmentBooking {
 	public void editProfile(String name) throws Exception {
 		int index=0;
 
-		System.out.println("Please enter your id");
-		int id1 = sc.nextInt();
-		for(int i=0;i<dc_id.length;i++)
-		{
-			if(id1 == dc_id[i])
-			{
-				index = i;
-				break;
-			}
-		}
+//		System.out.println("Please enter your id");
+//		int id1 = sc.nextInt();
+//		for(int i=0;i<dc_id.size();i++)
+//		{
+//			if(id1 == dc_id.get(i))
+//			{
+//				index = i;
+//				break;
+//			}
+//		}
 
 		System.out.println();
-		System.out.println("ID : "+dc_id[index]);
-		System.out.println("Name : "+dc_name[index]);
-		System.out.println("Mobile. no. : "+dc_mobile_no[index]);
-		System.out.println("City : "+dc_city[index]);
-		System.out.println("Open Time : "+openTime[index]);
-		System.out.println("Close Time : "+closeTime[index]);
+		System.out.println("Profile Details");
+		System.out.println("---------------");
+		
+		System.out.println("ID : "+dc_id.get(dc_userName.indexOf(name)));
+		System.out.println("Name : "+dc_name.get(dc_userName.indexOf(name)));
+		System.out.println("Mobile. no. : "+dc_mobile_no.get(dc_userName.indexOf(name)));
+		System.out.println("City : "+dc_city.get(dc_userName.indexOf(name)));
+		System.out.println("Open Time : "+openTime.get(dc_userName.indexOf(name)));
+		System.out.println("Close Time : "+closeTime.get(dc_userName.indexOf(name)));
 		System.out.println();
 
 		String details_ch="Y";
@@ -268,22 +278,26 @@ public class AppointmentBooking {
 			switch(choice) {
 			case 1 : System.out.println("Enter the Name ");
 			sc.nextLine();
-			dc_name[index]=sc.nextLine();
+			dc_name.add(index, sc.nextLine());
 			break;
 			case 2 : System.out.println("Enter the Mobile. no. ");
 			sc.nextLine();
-			dc_mobile_no[index] = sc.nextInt();
+			//dc_mobile_no[index] = sc.nextInt();
+			dc_mobile_no.add(index, (long) sc.nextInt());
 			break;
 			case 3 : System.out.println("Enter the City ");
 			sc.nextLine();
-			dc_city[index] = sc.nextLine();
+			//dc_city[index] = sc.nextLine();
+			dc_city.add(index, sc.nextLine());
 			case 4 : System.out.println("Enter the Open Time ");
 			sc.nextLine();
-			openTime[index] = sc.nextInt();
+			//openTime[index] = sc.nextInt();
+			openTime.add(index, sc.nextInt());
 			break;
 			case 5 : System.out.println("Enter the Close Time ");
 			sc.nextLine();
-			closeTime[index] = sc.nextInt();
+			//closeTime[index] = sc.nextInt();
+			closeTime.add(index, sc.nextInt());
 			break;
 			}
 
@@ -312,7 +326,7 @@ public class AppointmentBooking {
 	}
 
 	//Display Appointments for the Doctor
-	public void showAppointment(String name, String[] appoint_pt, String[] appoint_dr) throws Exception {
+	public void showAppointment(String name, ArrayList<String> appoint_pt, ArrayList<String> appoint_dr) throws Exception {
 
 		int index=0;
 		String[] headings = {"Appointment No.","Name","Age","MobileNo.","Gender"};
@@ -328,9 +342,9 @@ public class AppointmentBooking {
 		System.out.println();
 		System.out.println("*************************************************************************************************************");
 
-		for(int i=0;i<dc_userName.length;i++)
+		for(int i=0;i<dc_userName.size();i++)
 		{
-			if(dc_userName[i].equals(name))
+			if(dc_userName.get(i).equals(name))
 			{
 				index=i;
 				break;
@@ -338,16 +352,16 @@ public class AppointmentBooking {
 		}
 		int cnt=0;
 
-		for(int j=0;j<appoint_pt.length;j++)
+		for(int j=0;j<appoint_pt.size();j++)
 		{
-			if(dc_name[index].equals(appoint_dr[j]))
+			if(dc_name.get(index).equals(appoint_dr.get(j)))
 			{
 				cnt++;
 				tableRows(String.valueOf(cnt));
-				tableRows(pt_name[j]);
-				tableRows(String.valueOf(age[j]));
-				tableRows(String.valueOf(mobile_no[j]));
-				tableRows(gender[j]);
+				tableRows(pt_name.get(j));
+				tableRows(String.valueOf(age.get(j)));
+				tableRows(String.valueOf(mobile_no.get(j)));
+				tableRows(gender.get(j));
 				System.out.println();
 
 			}
@@ -423,30 +437,36 @@ public class AppointmentBooking {
 	public  void patientRegister() {
 
 		System.out.println("Enter your ID is : ");
-		pateint_id[index_pt] = sc.nextInt();
+		//pateint_id[index_pt] = sc.nextInt();
+		pateint_id.add(index_pt, sc.nextInt());
 		System.out.println("Enter your name : ");
 		sc.nextLine();
-		pt_name[index_pt] = sc.nextLine();
+		//pt_name[index_pt] = sc.nextLine();
+		pt_name.add(index_pt, sc.nextLine());
 		System.out.println("Enter your mobile no. : ");
-		mobile_no[index_pt]=sc.nextLong();
+		//mobile_no[index_pt]=sc.nextLong();
+		mobile_no.add(index_pt, sc.nextLong());
 		sc.nextLine();
 		System.out.println("Enter your age : ");
-		age[index_pt]=sc.nextInt();
+		//age[index_pt]=sc.nextInt();
+		age.add(index_pt, sc.nextInt());
 		System.out.println("Enter your Gender : ");
 		sc.nextLine();
-		gender[index_pt]=sc.nextLine();
-
+		//gender[index_pt]=sc.nextLine();
+		gender.add(index_pt, sc.nextLine());
 		System.out.println("Enter your Username : ");
-		userName[index_pt] = sc.nextLine();
+		//userName[index_pt] = sc.nextLine();
+		userName.add(index_pt, sc.nextLine());
 		System.out.println("Enter your password : ");
-		password[index_pt] = sc.nextLine();
+		//password[index_pt] = sc.nextLine();
+		password.add(index_pt, sc.nextLine());
 		System.out.println("Registration is Successful!!!!");
 		index_pt++;
 
 	}
 
 	//patient login
-	public String patientLogin(String[] username, String[] password) throws Exception {
+	public String patientLogin(ArrayList<String> username, ArrayList<String> password) throws Exception {
 
 		System.out.println();
 		System.out.println("                           --------------------- Patient  Page ---------------------                             ");
@@ -461,9 +481,9 @@ public class AppointmentBooking {
 		password1 = sc.nextLine();
 
 		//username validation
-		for(int i=0; i<username.length; i++)
+		for(int i=0; i<username.size(); i++)
 		{
-			if(username1.equals(username[i]))
+			if(username1.equals(username.get(i)))
 			{
 				userFlag = true;
 				break;
@@ -471,9 +491,9 @@ public class AppointmentBooking {
 		}
 
 		//password validation
-		for(int i=0; i<password.length; i++)
+		for(int i=0; i<password.size(); i++)
 		{
-			if(password1.equals(password[i]))
+			if(password1.equals(password.get(i)))
 			{
 				passFlag = true;
 				break;
@@ -504,13 +524,13 @@ public class AppointmentBooking {
 		System.out.println();
 		System.out.println("*************************************************************************************************************");
 
-		for(int i=0 ; pateint_id[i]!=0 && i<pateint_id.length ; i++)
+		for(int i=0 ; i<pateint_id.size() ; i++)
 		{
-			tableRows(String.valueOf(pateint_id[i]));
-			tableRows(pt_name[i]);
-			tableRows(String.valueOf(age[i]));
-			tableRows(String.valueOf(mobile_no[i]));
-			tableRows(gender[i]);
+			tableRows(String.valueOf(pateint_id.get(i)));
+			tableRows(pt_name.get(i));
+			tableRows(String.valueOf(age.get(i)));
+			tableRows(String.valueOf(mobile_no.get(i)));
+			tableRows(gender.get(i));
 			System.out.println();
 		}
 
@@ -531,10 +551,12 @@ public class AppointmentBooking {
 
 		//list of doctors
 		int dc_list=0,doctorListIndex=1;
-		while(dc_name[dc_list]!=null)
+		//while(dc_name.get(dc_list) != null)
+		for(String dc_name1 : dc_name)
 		{
-			System.out.println(doctorListIndex+". "+dc_name[dc_list]);
-			dc_list++;
+			//System.out.println(doctorListIndex+". "+dc_name.get(dc_list));
+			System.out.println(doctorListIndex+". "+ dc_name1);
+			//			dc_list++;
 			doctorListIndex++;
 		}
 		System.out.println();
@@ -555,15 +577,15 @@ public class AppointmentBooking {
 		System.out.println("Appointment Details");
 		System.out.println("-------------------");
 		System.out.println();
-		System.out.println("Doctor Name : " +dc_name[dc_choice]);
-		System.out.println("Mobile. no. : "+dc_mobile_no[dc_choice]);
-		System.out.println("City : "+dc_city[dc_choice]);
-		System.out.println("Appointment Timing : "+openTime[dc_choice]+"-"+closeTime[dc_choice]);
+		System.out.println("Doctor Name : " +dc_name.get(dc_choice));
+		System.out.println("Mobile. no. : "+dc_mobile_no.get(dc_choice));
+		System.out.println("City : "+dc_city.get(dc_choice));
+		System.out.println("Appointment Timing : "+openTime.get(dc_choice)+"-"+closeTime.get(dc_choice));
 		System.out.println();
 
-		for(int i=0;i<pt_name.length;i++)
+		for(int i=0;i<pt_name.size();i++)
 		{
-			if(pt_name[i] == pt_name1)
+			if(pt_name.get(i) == pt_name1)
 			{
 				index= i;
 				break;
@@ -571,9 +593,9 @@ public class AppointmentBooking {
 		}
 
 		//save the pt name in array pt_name
-		appoint_pt[apt_index]= pt_name1;
+		appoint_pt.add(apt_index,pt_name1);
 		//save the respective doctor's name in array dc_name
-		appoint_dr[apt_index] = dc_name[dc_choice];
+		appoint_dr.add(apt_index,dc_name.get(dc_choice));
 		apt_index++;
 
 		mainFunct();
@@ -618,13 +640,13 @@ public class AppointmentBooking {
 		System.out.println();
 		System.out.println("*************************************************************************************************************");
 
-		for(int i=0 ; dc_id[i] !=0; i++)
+		for(int i=0;i<dc_id.size();i++)
 		{
-			tableRows(String.valueOf(dc_id[i]));
-			tableRows(dc_name[i]);
-			tableRows(String.valueOf(dc_mobile_no[i]));
-			tableRows(dc_city[i]);
-			tableRows(String.valueOf(openTime[i])+"-"+String.valueOf(closeTime[i]));
+			tableRows(String.valueOf(dc_id.get(i)));
+			tableRows(dc_name.get(i));
+			tableRows(String.valueOf(dc_mobile_no.get(i)));
+			tableRows(dc_city.get(i));
+			tableRows(String.valueOf(openTime.get(i))+"-"+String.valueOf(closeTime.get(i)));
 			System.out.println();
 		}
 		adminFunction();
@@ -662,22 +684,22 @@ public class AppointmentBooking {
 		System.out.println();
 		System.out.println("*****************************************************************************************");
 		try {
-			for(int i=0;i<appoint_pt.length;i++)
+			for(int i=0;i<appoint_pt.size();i++)
 			{
-				tableRows(appoint_dr[i]);
-				tableRows(appoint_pt[i]);
+				tableRows(appoint_dr.get(i));
+				tableRows(appoint_pt.get(i));
 
 				int name_index=0;
-				for(int k=0;k<dc_name.length;k++)
+				for(int k=0;k<dc_name.size();k++)
 				{
-					if(dc_name[k].equals(appoint_dr[i]))
+					if(dc_name.get(k).equals(appoint_dr.get(i)))
 					{
 						name_index=k;
 						break;
 					}
 				}
 
-				tableRows(String.valueOf(openTime[name_index])+"-"+String.valueOf(closeTime[name_index]));
+				tableRows(String.valueOf(openTime.get(name_index))+"-"+String.valueOf(closeTime.get(name_index)));
 
 				System.out.println();
 
